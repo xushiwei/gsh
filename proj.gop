@@ -18,22 +18,22 @@ type projObj interface {
 
 // Proj is project class of this ClassFile project.
 type Proj struct {
-	Stdout io.Writer
-	Stderr io.Writer
-	Stdin  io.Reader
+	stdout io.Writer
+	stderr io.Writer
+	stdin  io.Reader
 }
 
 func (p *Proj) initProj() {
-	p.Stdin = os.Stdin
-	p.Stdout = os.Stdout
-	p.Stderr = os.Stderr
+	p.stdin = os.Stdin
+	p.stdout = os.Stdout
+	p.stderr = os.Stderr
 }
 
 func (p *Proj) execCmd(name string, args ...string) error {
 	cmd := exec.Command(name, args...)
-	cmd.Stdin = p.Stdin
-	cmd.Stdout = p.Stdout
-	cmd.Stderr = p.Stderr
+	cmd.Stdin = p.stdin
+	cmd.Stdout = p.stdout
+	cmd.Stderr = p.stderr
 	return cmd.Run()
 }
 
