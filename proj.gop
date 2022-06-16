@@ -80,5 +80,5 @@ func (p *Proj) Ls__1(args ...string) error {
 // Gopt_Proj_Main is main entry of this ClassFile project.
 func Gopt_Proj_Main(proj projObj) {
 	proj.initProj
-	proj.MainEntry
+	proj.MainEntry // call MainEntry of user code
 }
