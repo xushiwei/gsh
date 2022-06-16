@@ -1,6 +1,7 @@
 package gsh
 
 import (
+	"bytes"
 	"io"
 	"os"
 	"os/exec"
@@ -18,23 +19,46 @@ type projObj interface {
 
 // Proj is project class of this ClassFile project.
 type Proj struct {
-	stdout io.Writer
-	stderr io.Writer
-	stdin  io.Reader
+	fout io.Writer
+	ferr io.Writer
+	fin  io.Reader
+	cout string
+	err  error
 }
 
 func (p *Proj) initProj() {
-	p.stdin = os.Stdin
-	p.stdout = os.Stdout
-	p.stderr = os.Stderr
+	p.fin = os.Stdin
+	p.fout = os.Stdout
+	p.ferr = os.Stderr
 }
 
 func (p *Proj) execCmd(name string, args ...string) error {
 	cmd := exec.Command(name, args...)
-	cmd.Stdin = p.stdin
-	cmd.Stdout = p.stdout
-	cmd.Stderr = p.stderr
-	return cmd.Run()
+	cmd.Stdin = p.fin
+	cmd.Stdout = p.fout
+	cmd.Stderr = p.ferr
+	p.err = cmd.Run()
+	return p.err
+}
+
+func (p *Proj) LastErr() error {
+	return p.err
+}
+
+func (p *Proj) Capout(doSth func()) (string, error) {
+	var out bytes.Buffer
+	old := p.fout
+	p.fout = &out
+	defer func() {
+		p.fout = old
+	}()
+	doSth
+	p.cout = out.string
+	return p.cout, p.err
+}
+
+func (p *Proj) Output() string {
+	return p.cout
 }
 
 func (p *Proj) Rmdir(args ...string) error {
@@ -46,7 +70,7 @@ func (p *Proj) Mkdir(args ...string) error {
 }
 
 func (p *Proj) Ls__0() error {
-	return p.execCmd("ls")
+	return p.Ls__1()
 }
 
 func (p *Proj) Ls__1(args ...string) error {
@@ -55,8 +79,6 @@ func (p *Proj) Ls__1(args ...string) error {
 
 // Gopt_Proj_Main is main entry of this ClassFile project.
 func Gopt_Proj_Main(proj projObj) {
-	proj.initProj()
-
-	// call MainEntry of user code:
-	proj.(interface{ MainEntry() }).MainEntry()
+	proj.initProj
+	proj.MainEntry
 }
