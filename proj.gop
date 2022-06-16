@@ -16,7 +16,6 @@ type Proj struct {
 }
 
 func (p *Proj) initProj() {
-	// you can do some initialization here:
 	p.Stdin = os.Stdin
 	p.Stdout = os.Stdout
 	p.Stderr = os.Stderr
