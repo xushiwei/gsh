@@ -1,5 +1,13 @@
+package gsh
+
 import (
+	"io"
 	"os"
+	"os/exec"
+)
+
+const (
+	GopPackage = true
 )
 
 // user-defined project should implements:
@@ -21,8 +29,8 @@ func (p *Proj) initProj() {
 	p.Stderr = os.Stderr
 }
 
-func (p *Proj) execCmd(name string, arg ...string) error {
-	cmd := exec.Command(name, args)
+func (p *Proj) execCmd(name string, args ...string) error {
+	cmd := exec.Command(name, args...)
 	cmd.Stdin = p.Stdin
 	cmd.Stdout = p.Stdout
 	cmd.Stderr = p.Stderr
@@ -37,7 +45,11 @@ func (p *Proj) Mkdir(args ...string) error {
 	return p.execCmd("mkdir", args...)
 }
 
-func (p *Proj) Ls(args ...string) error {
+func (p *Proj) Ls__0() error {
+	return p.execCmd("ls")
+}
+
+func (p *Proj) Ls__1(args ...string) error {
 	return p.execCmd("ls", args...)
 }
 

@@ -4,4 +4,4 @@ go 1.16
 
 gop 1.1
 
-classfile ".gsh" ""
+classfile .gsh "" github.com/xushiwei/gsh
