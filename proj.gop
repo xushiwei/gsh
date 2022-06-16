@@ -2,6 +2,18 @@
 type Proj struct {
 }
 
+func (p *Proj) Rmdir(args ...string) error {
+	return execCmd("rmdir", args...)
+}
+
+func (p *Proj) Mkdir(args ...string) error {
+	return execCmd("mkdir", args...)
+}
+
+func (p *Proj) Ls(args ...string) error {
+	return execCmd("ls", args...)
+}
+
 // Gopt_Proj_Main is main entry of this ClassFile project.
 func Gopt_Proj_Main(proj any) {
 	// you can do some initialization here:

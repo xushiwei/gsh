@@ -1,4 +1,4 @@
-$PROJECT_NAME
+Go+ DevOps Tools
 ======
 
-Congrats! This is a new project to implement a new ClassFile work.
+This is a DEMO project to implement a new ClassFile work.

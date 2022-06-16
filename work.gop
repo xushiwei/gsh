@@ -1,5 +1,0 @@
-// Work is work class of this ClassFile project.
-// If you don't need a work calss, delete `work.gop` file from
-// this project and remove `$WorkExt` in `gop.mod` file.
-type Work struct {
-}
