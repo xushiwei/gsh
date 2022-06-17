@@ -69,11 +69,7 @@ func (p *Proj) Mkdir(args ...string) error {
 	return p.execCmd("mkdir", args...)
 }
 
-func (p *Proj) Ls__0() error {
-	return p.Ls__1()
-}
-
-func (p *Proj) Ls__1(args ...string) error {
+func (p *Proj) Ls(args ...string) error {
 	return p.execCmd("ls", args...)
 }
 
