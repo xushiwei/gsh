@@ -1,13 +1,16 @@
-mkdir "testgsh"
+mkdir! "testgsh"
+
+mkdir "testgsh2"
 lastErr!
+
+mkdir "testgsh3"
+if lastErr != nil {
+    panic lastErr
+}
 
 capout => {
     ls
 }
-if lastErr != nil { // similar to: lastErr!
-    panic(lastErr)
-}
 println output.fields
 
-rmdir "testgsh"
-lastErr!
+rmdir "testgsh", "testgsh2", "testgsh3"
