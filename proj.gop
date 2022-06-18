@@ -7,10 +7,6 @@ import (
 	"os/exec"
 )
 
-const (
-	GopPackage = true
-)
-
 // user-defined project should implements:
 type projObj interface {
 	initProj()
