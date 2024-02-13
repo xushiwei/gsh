@@ -12,7 +12,5 @@
 *.out
 
 # Go+ ignore files
-go.mod
-go.sum
 go.work*
-gop_autogen*.go
+.DS_Store

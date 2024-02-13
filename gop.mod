@@ -1,7 +1,3 @@
-module github.com/xushiwei/gsh
+gop 1.2
 
-go 1.16
-
-gop 1.1
-
-classfile .gsh "" github.com/xushiwei/gsh
+project .gsh App github.com/xushiwei/gsh
