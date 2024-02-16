@@ -28,9 +28,8 @@ func (p *App) initApp() {
 //line app.gop:22:1
 	p.ferr = os.Stderr
 }
+//line app.gop:25:1
 // Gop_Exec executes a shell command.
-//
-//line app.gop:26:1
 func (p *App) Gop_Exec(name string, args ...string) error {
 //line app.gop:27:1
 	cmd := exec.Command(name, args...) 
@@ -45,16 +44,14 @@ func (p *App) Gop_Exec(name string, args ...string) error {
 //line app.gop:32:1
 	return p.err
 }
+//line app.gop:35:1
 // LastErr returns error of last command execution.
-//
-//line app.gop:36:1
 func (p *App) LastErr() error {
 //line app.gop:37:1
 	return p.err
 }
+//line app.gop:40:1
 // Capout captures stdout of doSth() execution and save it to output.
-//
-//line app.gop:41:1
 func (p *App) Capout(doSth func()) (string, error) {
 //line app.gop:42:1
 	var out bytes.Buffer
@@ -74,16 +71,14 @@ func (p *App) Capout(doSth func()) (string, error) {
 //line app.gop:50:1
 	return p.cout, p.err
 }
+//line app.gop:53:1
 // Output returns result of last capout.
-//
-//line app.gop:54:1
 func (p *App) Output() string {
 //line app.gop:55:1
 	return p.cout
 }
+//line app.gop:58:1
 // Gopt_App_Main is main entry of this classfile.
-//
-//line app.gop:59:1
 func Gopt_App_Main(a interface {
 	initApp()
 }) {
